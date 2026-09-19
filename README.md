@@ -52,3 +52,16 @@ Run all cells top to bottom. Final output: `submission_spectralcode.csv`.
 ## Dependencies
 
 astropy, astroquery, numpy, pandas, matplotlib, scipy
+
+## Additional finding (post-submission)
+
+After the deadline, further testing identified that long-timescale
+(multi-day to multi-month) instrumental/stellar drift was not fully
+removed by the single-window rolling-median detrend, causing long-period
+systematics to dominate the BLS periodogram on some stars. A two-stage
+detrending approach (`clean_v4`: wide-window pass to remove long-term
+drift, followed by the original narrow-window pass) was tested and
+confirmed to fix this on a verified case (KIC 4935189: recovered period
+error reduced from 3394% to 0.00%, SDE improved from 25.5 to 57.0).
+Validation on medium/shallow-depth stars was not completed due to time
+and environment constraints.
